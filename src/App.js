@@ -1,4 +1,3 @@
-import './App.css';
 import Header from './components/Header/Header';
 import UserInput from './components/UserInput/UserInput';
 import ResultTable from './components/ResultTable/ResultTable';
