@@ -1,4 +1,5 @@
 import { useState } from "react";
+import classes from './UserInput.module.css';
 
 // 해당 상수는 컴포넌트 함수가 실행될 때마다 다시 만들어질 필요X -> 컴포넌트 함수 외부에
 const initialUserInput = {
@@ -29,14 +30,14 @@ const UserInput = (props) => {
                 ...prevInput,
                 // 네 가지 프로퍼티 중 하나를 input에 저장된 내용에 따라 값으로 설정.
                 // 상태 객체 동적으로 update
-                [input]: value
-            }
+                [input]: +value,  // +는 문자열 값을 숫자로 변환하는 역할
+            };
         });
     };
 
     return (
-        <form onSubmit={submitHandler} className="form">
-            <div className="input-group">
+        <form onSubmit={submitHandler} className={classes.form}>
+            <div className={classes['input-group']}>
                 <p>
                     <label htmlFor="current-savings">Current Savings ($)</label>
                     {/* 화살표 함수가 실행될 때만 inputChangeHandler() 실행 가능 */}
@@ -53,7 +54,7 @@ const UserInput = (props) => {
                     } value={userInput['yearly-contribution']} type="number" id="yearly-contribution" />
                 </p>
             </div>
-            <div className="input-group">
+            <div className={classes['input-group']}>
                 <p>
                     <label htmlFor="expected-return">
                     Expected Interest (%, per year)
@@ -69,11 +70,11 @@ const UserInput = (props) => {
                     } value={userInput.duration} type="number" id="duration" />
                 </p>
             </div>
-            <p className="actions">
-                <button onClick={resetHandler} type="reset" className="buttonAlt">
+            <p className={classes.actions}>
+                <button onClick={resetHandler} type="reset" className={classes.buttonAlt}>
                     Reset
                 </button>
-                <button type="submit" className="button">
+                <button type="submit" className={classes.button}>
                     Calculate
                 </button>
             </p>

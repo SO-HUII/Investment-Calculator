@@ -1,6 +1,16 @@
-const ResultTable = () => {
+import classes from './ResultTable.module.css';
+
+// currency로 변환하는 포맷팅
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+});
+
+const ResultTable = (props) => {
     return (
-        <table className="result">
+        <table className={classes.result}>
             <thead>
                 <tr>
                     <th>Year</th>
@@ -11,13 +21,15 @@ const ResultTable = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>YEAR NUMBER</td>
-                    <td>TOTAL SAVINGS END OF YEAR</td>
-                    <td>INTEREST GAINED IN YEAR</td>
-                    <td>TOTAL INTEREST GAINED</td>
-                    <td>TOTAL INVESTED CAPITAL</td>
-                </tr>
+                {props.data.map((yearData) => (
+                    <tr key={yearData.year}>
+                        <td>{yearData.year}</td>  {/* 연도 */}
+                        <td>{formatter.format(yearData.savingsEndOfYear)}</td>  {/* 연말 총 저축액 */}
+                        <td>{formatter.format(yearData.yearlyInterest)}</td>  {/* 해당연도에 발생한 이자 */}
+                        <td>{formatter.format(yearData.savingsEndOfYear - props.initialInvestment - yearData.yearlyContribution * yearData.year)}</td>  {/* 총 이자 */}
+                        <td>{formatter.format(props.initialInvestment + yearData.yearlyContribution * yearData.year)}</td>  {/* 총 투자 자본 */}
+                    </tr>
+                ))}
             </tbody>
         </table>
     )
