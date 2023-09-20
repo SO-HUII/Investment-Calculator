@@ -32,13 +32,13 @@ function App() {
     }
   }
 
-
-
   return (
     <div className="App">
       <Header />
       <UserInput onCalculate={calculateHandler} />
-      <ResultTable />
+      {/* style props을 객체로 설정 -> 이중 괄호 */}
+      {!userInput && <p style={{textAlign: 'center'}}>No investment calculated yet.</p>}
+      {userInput && <ResultTable data={yearlyData} initialInvestment={userInput['current-savings']} />}
     </div>
   );
 }
