@@ -1,0 +1,16 @@
+.header {
+    text-align: center;
+    margin: 3rem auto;
+}
+
+
+.header img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: contain;  /* 이미지의 본래 가로 세로 비율과 width, height 속성으로 지정한 비율이 일치하지 않으면, 이미지가 딱 들어맞지 않아서 이미지 상하나 좌우로 빈 공간 생김 */
+    background-color: transparent;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+}
